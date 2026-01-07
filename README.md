@@ -32,7 +32,7 @@ Abre `index.html` en tu navegador favorito para ver la Pokédex en acción.
 1. **Clona el repositorio**:
 
    ```bash
-   git clone https://github.com/TU_USUARIO/AymaneBenkara-Pokedex.git
+   git clone https://github.com/aymanebenkara/Aymane-PokedexAPI.git
    cd AymaneBenkara-Pokedex
    ```
 
@@ -146,12 +146,6 @@ Las contribuciones son bienvenidas. Si quieres mejorar el proyecto:
 ## 📝 Licencia
 
 Este proyecto es de código abierto y está disponible bajo la licencia MIT.
-
-## 👤 Autor
-
-**Aymane Benkara**
-
-- GitHub: [@AymaneBenkara](https://github.com/AymaneBenkara)
 
 ## 🙏 Agradecimientos
 
