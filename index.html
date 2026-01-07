@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Pokédex interactiva con los 151 Pokémon originales. Diseño pixel art retro con efectos 3D y conexión a PokéAPI."
+    />
+    <meta
+      name="keywords"
+      content="Pokédex, Pokémon, PokéAPI, JavaScript, Pixel Art, Retro"
+    />
+    <meta name="author" content="Aymane Benkara" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Pokédex Pixel Art - 151 Pokémon" />
+    <meta
+      property="og:description"
+      content="Pokédex interactiva con diseño pixel art retro y efectos 3D"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Pokédex Pixel Art - 151 Pokémon" />
+    <meta
+      property="twitter:description"
+      content="Pokédex interactiva con diseño pixel art retro y efectos 3D"
+    />
+
+    <title>Pokédex Pixel Art - 151 Pokémon</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>Proyecto Pokédex</h1>
+      <p class="subtitle">Galería de 151 Pokémon con HTML, CSS y JavaScript</p>
+
+      <!-- Controles de búsqueda y filtro -->
+      <div class="search-filter-container">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="🔍 Buscar Pokémon..."
+        />
+      </div>
+
+      <div id="typeFilters" class="type-filters">
+        <button class="filter-btn active" data-type="all">Todos</button>
+        <button class="filter-btn" data-type="Planta">🌿 Planta</button>
+        <button class="filter-btn" data-type="Fuego">🔥 Fuego</button>
+        <button class="filter-btn" data-type="Agua">💧 Agua</button>
+        <button class="filter-btn" data-type="Bicho">🐛 Bicho</button>
+        <button class="filter-btn" data-type="Normal">⭐ Normal</button>
+        <button class="filter-btn" data-type="Veneno">☠️ Veneno</button>
+        <button class="filter-btn" data-type="Eléctrico">⚡ Eléctrico</button>
+        <button class="filter-btn" data-type="Tierra">🏜️ Tierra</button>
+        <button class="filter-btn" data-type="Hada">✨ Hada</button>
+        <button class="filter-btn" data-type="Lucha">🥊 Lucha</button>
+        <button class="filter-btn" data-type="Psíquico">🔮 Psíquico</button>
+        <button class="filter-btn" data-type="Roca">🪨 Roca</button>
+        <button class="filter-btn" data-type="Fantasma">👻 Fantasma</button>
+        <button class="filter-btn" data-type="Hielo">❄️ Hielo</button>
+        <button class="filter-btn" data-type="Dragón">🐉 Dragón</button>
+        <button class="filter-btn" data-type="Acero">⚙️ Acero</button>
+        <button class="filter-btn" data-type="Siniestro">🌙 Siniestro</button>
+        <button class="filter-btn" data-type="Volador">🦅 Volador</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section id="pokedex" class="pokedex">
+      </section>
+
+      <!-- Mensaje cuando no hay resultados -->
+      <div id="noResults" class="no-results hidden">
+        <p>😢 No se encontraron Pokémon con esos criterios</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 - Proyecto Pokédex | Aymane Benkara</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

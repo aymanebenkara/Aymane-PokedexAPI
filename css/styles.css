@@ -1,0 +1,562 @@
+/*
+ * PROYECTO POKÉDEX - PIXEL ART EDITION
+ * Diseño Retro 8-bit estilo GameBoy / Arcade
+ */
+
+/* Importar fuente Pixel Art de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+    --bg-color: #202020;
+    --text-color: #333;
+    --card-bg: #f8f9fa;
+
+    /* Colores de Tipos (Vibrantes para pixel art) */
+    --type-planta: #78C850;
+    --type-fuego: #F08030;
+    --type-agua: #6890F0;
+    --type-electrico: #F8D030;
+    --type-normal: #A8A878;
+    --type-veneno: #A040A0;
+
+    /* Colores de fondo planos */
+    --bg-planta: #b4eeb4;
+    --bg-fuego: #ffcc99;
+    --bg-agua: #add8e6;
+    --bg-electrico: #ffffcc;
+    --bg-normal: #e0e0e0;
+    --bg-veneno: #dda0dd;
+    --bg-bicho: #eff5b0;
+    --bg-tierra: #f4e7da;
+    --bg-hada: #fceaff;
+    --bg-lucha: #ffdec1;
+    --bg-psiquico: #ffcfcf;
+    --bg-roca: #d5d5d4;
+    --bg-fantasma: #e6e6fa;
+    --bg-hielo: #e0ffff;
+    --bg-dragon: #e6e6fa;
+    --bg-volador: #e6e6fa;
+    --bg-acero: #e8e8e8;
+    --bg-siniestro: #d4c5b9;
+
+    /* Colores de texto/badge para los nuevos tipos */
+    --type-bicho: #A8B820;
+    --type-tierra: #E0C068;
+    --type-hada: #EE99AC;
+    --type-lucha: #C03028;
+    --type-psiquico: #F85888;
+    --type-roca: #B8A038;
+    --type-fantasma: #705898;
+    --type-hielo: #98D8D8;
+    --type-dragon: #7038F8;
+    --type-volador: #A890F0;
+    --type-acero: #B8B8D0;
+    --type-siniestro: #705848;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: var(--bg-color);
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--text-color);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* Header Moderno 8-Bit */
+.header {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    margin-bottom: 3rem;
+    background-color: #2d3436;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0px #000;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Patrón de fondo estilo "scanline" o rejilla pixelada para el header */
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 0px #6c5ce7;
+    /* Sombra Neon Purple */
+    position: relative;
+    z-index: 1;
+    letter-spacing: -2px;
+}
+
+.subtitle {
+    font-size: 0.8rem;
+    color: #dfe6e9;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    background-color: #000;
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid #fff;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* Clase de utilidad para ocultar elementos (soluciona el bug del mensaje) */
+.hidden {
+    display: none !important;
+}
+
+/* Controles */
+.search-filter-container {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 0.8rem;
+    border: 4px solid #000;
+    border-radius: 0;
+    /* SIN bordes redondeados */
+    outline: none;
+    font-family: 'Press Start 2P', cursive;
+    background: #fff;
+    box-shadow: 4px 4px 0px #000;
+}
+
+.search-input:focus {
+    background: #ffeb3b;
+}
+
+/* Filtros por Botones */
+.type-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+}
+
+.filter-btn {
+    padding: 12px 15px;
+    border: 4px solid #000;
+    background: #fff;
+    border-radius: 0;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    color: #000;
+    box-shadow: 4px 4px 0px #000;
+    transition: all 0.1s;
+    text-transform: uppercase;
+}
+
+.filter-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000;
+    background: #eee;
+}
+
+.filter-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+.filter-btn.active {
+    background: #000;
+    color: #fff;
+}
+
+/* Estilos específicos para botones activos */
+.filter-btn[data-type="Planta"].active {
+    background: var(--type-planta);
+    color: #000;
+}
+
+.filter-btn[data-type="Fuego"].active {
+    background: var(--type-fuego);
+    color: #000;
+}
+
+.filter-btn[data-type="Agua"].active {
+    background: var(--type-agua);
+    color: #000;
+}
+
+.filter-btn[data-type="Eléctrico"].active {
+    background: var(--type-electrico);
+    color: #000;
+}
+
+.filter-btn[data-type="Normal"].active {
+    background: var(--type-normal);
+    color: #000;
+}
+
+/* Grid de Pokedex */
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pokedex {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 40px;
+    padding: 10px;
+}
+
+/* Tarjeta Pokemon Base */
+.pokemon-card {
+    background: white;
+    border: 4px solid #000;
+    border-radius: 0;
+    padding: 0;
+    /* Padding movido a .card-content */
+    position: relative;
+    box-shadow: 8px 8px 0px #000;
+    /* transition: transform 0.1s; <- REMOVIDO para que el JS controle el movimiento fluido */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-style: preserve-3d;
+    /* CRUCIAL para 3D */
+    will-change: transform;
+    overflow: hidden;
+    /* Para que el brillo no se salga */
+}
+
+/* Eliminamos el hover básico anterior para que no choque con el JS */
+/* .pokemon-card:hover { transform: translate(-4px, -4px); ... } */
+
+/* Contenedor interno para mantener el padding pero permitir que el brillo esté encima */
+.card-content {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    /* Para que el ratón detecte la card, no el contenido */
+    position: relative;
+    z-index: 2;
+}
+
+/* Efecto Brillo (Glare) */
+.card-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    mix-blend-mode: overlay;
+    /* Efecto de fusión genial */
+}
+
+/* Cabecera de la tarjeta */
+.card-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+}
+
+/* Contenedor de Imagen */
+.card-image-container {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    background: #fff;
+    border: 2px solid #000;
+    overflow: hidden;
+    /* CRUCIAL: evita que el sprite se salga */
+    position: relative;
+}
+
+.pokemon-card img {
+    max-width: 110px;
+    max-height: 110px;
+    width: auto;
+    height: auto;
+    image-rendering: pixelated;
+    /* CRUCIAL para pixel art */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.pokemon-card:hover img {
+    /* Animación simple de salto */
+    animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-5px);
+    }
+}
+
+/* Información de la tarjeta */
+.card-info {
+    text-align: center;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-info h2 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.description {
+    font-size: 0.5rem;
+    /* Letra pequeña estilo GameBoy */
+    color: #fff;
+    margin-top: 15px;
+    line-height: 1.6;
+    background: #000;
+    /* Fondo negro */
+    border: 2px solid #fff;
+    /* Borde interno blanco para contraste */
+    outline: 2px solid #000;
+    /* Borde externo negro */
+    padding: 10px;
+    text-align: left;
+    border-radius: 0;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+    align-self: flex-end;
+    /* Alinear al fondo si hay espacio */
+    width: 100%;
+}
+
+/* Badges de Tipo */
+.type-badge {
+    display: inline-block;
+    padding: 8px 10px;
+    border: 2px solid #000;
+    border-radius: 0;
+    font-size: 0.5rem;
+    background: #fff;
+    color: #000;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 0px #000;
+}
+
+.type-Planta {
+    background-color: var(--type-planta);
+}
+
+.type-Fuego {
+    background-color: var(--type-fuego);
+}
+
+.type-Agua {
+    background-color: var(--type-agua);
+}
+
+.type-Eléctrico {
+    background-color: var(--type-electrico);
+}
+
+.type-Normal {
+    background-color: var(--type-normal);
+}
+
+.type-Veneno {
+    background-color: var(--type-veneno);
+}
+
+.type-Bicho {
+    background-color: var(--type-bicho);
+}
+
+.type-Tierra {
+    background-color: var(--type-tierra);
+}
+
+.type-Hada {
+    background-color: var(--type-hada);
+}
+
+.type-Lucha {
+    background-color: var(--type-lucha);
+}
+
+.type-Psíquico {
+    background-color: var(--type-psiquico);
+}
+
+.type-Roca {
+    background-color: var(--type-roca);
+}
+
+.type-Fantasma {
+    background-color: var(--type-fantasma);
+}
+
+.type-Hielo {
+    background-color: var(--type-hielo);
+}
+
+.type-Dragón {
+    background-color: var(--type-dragon);
+}
+
+.type-Volador {
+    background-color: var(--type-volador);
+}
+
+.type-Acero {
+    background-color: var(--type-acero);
+}
+
+.type-Siniestro {
+    background-color: var(--type-siniestro);
+}
+
+
+/* Estilos Dinámicos de Tarjeta (Fondos Planos) */
+.card-Planta {
+    background-color: var(--bg-planta);
+}
+
+.card-Fuego {
+    background-color: var(--bg-fuego);
+}
+
+.card-Agua {
+    background-color: var(--bg-agua);
+}
+
+.card-Eléctrico {
+    background-color: var(--bg-electrico);
+}
+
+.card-Normal {
+    background-color: var(--bg-normal);
+}
+
+.card-Veneno {
+    background-color: var(--bg-veneno);
+}
+
+.card-Bicho {
+    background-color: var(--bg-bicho);
+}
+
+.card-Tierra {
+    background-color: var(--bg-tierra);
+}
+
+.card-Hada {
+    background-color: var(--bg-hada);
+}
+
+.card-Lucha {
+    background-color: var(--bg-lucha);
+}
+
+.card-Psíquico {
+    background-color: var(--bg-psiquico);
+}
+
+.card-Roca {
+    background-color: var(--bg-roca);
+}
+
+.card-Fantasma {
+    background-color: var(--bg-fantasma);
+}
+
+.card-Hielo {
+    background-color: var(--bg-hielo);
+}
+
+.card-Dragón {
+    background-color: var(--bg-dragon);
+}
+
+.card-Volador {
+    background-color: var(--bg-volador);
+}
+
+.card-Acero {
+    background-color: var(--bg-acero);
+}
+
+.card-Siniestro {
+    background-color: var(--bg-siniestro);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 4rem;
+    color: #fff;
+    font-size: 0.6rem;
+    text-shadow: 2px 2px 0px #000;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .pokedex {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 1rem;
+    }
+}
